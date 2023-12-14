@@ -7,12 +7,27 @@
 
 import { useParams, useLocation } from "react-router-dom";
 
-export default function TrackPage() {
+export default function TrackPage({ users }) {
   const { id } = useParams(); // This would return the param 12345
+
+  console.log(users);
 
   const { search } = useLocation(); //use useLocation to get the current URL
   const queryParams = new URLSearchParams(search);
   const foo = queryParams.get("foo");
+
+  // Extracting state variable
+  const { pieceOfState } = useLocation().state;
+  //Below is how the state would have been passed in a component where user could click the link to the Trackpage route
+
+  //    <Link to={{
+  //     pathname: `/tracks/12345/something/jesus`,
+  //     search: '?foo=bar&x=yz',
+  //     state: { pieceOfState: 'yourValue' },
+  //     }}
+  // >
+  //   Go to TrackPage
+  // </Link>
 
   return (
     <div>
